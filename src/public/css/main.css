@@ -1,0 +1,108 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Montserrat", sans-serif;
+}
+
+.homePage {
+    display: flex;
+    justify-content: center;
+}
+
+/* 'products' view */
+.products {
+    width: 99vw;
+    display: flex;
+     flex-direction: column;
+     align-items: center;
+}
+
+.products h1 {
+    margin: 10px;
+}
+
+.products form button {
+    background-color: #ffffff00;
+    border: 0;
+}
+
+.products form button .cartIcon {
+    width: 50px;
+}
+
+.products .cardsContainer {
+    width: 70vw;
+    display: flex;
+     flex-direction: row;
+     flex-wrap: wrap;
+     justify-content: center;
+}
+
+.products .cardsContainer .productCard {
+    display: flex;
+     flex-direction: column;
+     align-items: center;
+    text-align: center;
+    width: 10rem;
+    height: 38rem;
+    margin: 2px;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: #eeeeee;
+}
+
+.products .cardsContainer .productCard p {
+    margin-block: 8px;
+}
+
+.products .cardsContainer .productCard h3 {
+    font-size: medium;
+    height: 3rem;
+}
+
+.products .cardsContainer .productCard img {
+    height: 15rem;
+}
+
+.products .cardsContainer .productCard .platform {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.products .cardsContainer .productCard .overview {
+    font-size: small;
+    height: 7rem;
+}
+
+.products .cardsContainer .productCard .price {
+    color: blue;
+    font-weight: bold;
+}
+
+.products .cardsContainer .productCard form button {
+    background-color: rgb(68, 76, 199);
+    color: white;
+    font-weight: bold;
+    padding: 5px;
+    border: 0;
+    border-radius: 20px;
+}
+
+.products .cardsContainer .productCard form .quantity {
+    border-radius: 20px;
+    margin-right: 10px;
+    width: 70px;
+}
+
+/* 'cart' view */
+#cartContainer .cartItem .row {
+    height: 10rem;
+    width: 100%;
+}
+
+#cartContainer .cartItem .imgContainer img {
+    height: 10rem;
+    width: 7rem;
+}

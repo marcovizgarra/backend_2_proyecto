@@ -1,0 +1,40 @@
+<section class="products">
+    <h1>Bienvenido a GAME STORE</h1>
+
+    <form action="/cart" method="GET">
+        <button type="submit">
+        <img src="/img/cart-shopping-solid.svg" alt="cartIcon" class="cartIcon m-3">
+    </button>
+
+    </form>
+    
+    <div class="cardsContainer">
+        {{#each docs}}
+            <div class="productCard col">
+                <h3>{{this.title}}</h3>
+                <img src={{this.image}} alt={{this.title}}>
+                <p class="platform">{{this.platform}}</p>
+                <p class="price">${{this.price}}</p>
+                <p class="overview">{{this.brief_overview}}</p>
+                <form class="row"  action="/products/add" method="POST">
+                    <input type="hidden" name="cartId" value="67b3e6926bc1eba38167b60b">
+                        {{!-- id de carrito de compras hardcodeado --}}
+                    <input type="hidden" name="itemId" value={{this.id}}>
+                    <input class="col quantity" type="number" placeholder="Cantidad" name="quantity" value="1">
+                    <button class="col" type="submit">Añadir al carrito</button>
+                </form>
+            </div>    
+        {{/each}}
+    </div>
+    <div class="paginationLinks d-flex justify-content-center">
+        {{#if hasPrevPage}}
+            <a href={{this.prevLink}} class="m-3">Anterior</a>
+        {{/if}}
+        
+        <p class="m-3">{{this.page}}</p>
+
+        {{#if hasNextPage}}
+            <a href={{this.nextLink}}  class="m-3">Siguiente</a>
+        {{/if}}
+    </div>
+</section>

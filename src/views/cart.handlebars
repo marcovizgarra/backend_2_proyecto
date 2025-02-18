@@ -1,0 +1,15 @@
+<div id="cartContainer">
+    <h1>Carrito de compras</h1>
+    {{#each cartItems}}
+        <div class="container cartItem">
+            <div class="row d-flex align-items-center">
+                <div class="imgContainer col">
+                    <img src={{ this.product.image }} alt={{ this.product.title }}>    
+                </div>
+                <p class="col">{{ this.product.title }}</p>
+                <p class="col">{{ this.product.platform }}</p>
+                <p class="col">{{ this.quant }}</p>
+            </div>
+        </div>
+    {{/each}}
+</div>
