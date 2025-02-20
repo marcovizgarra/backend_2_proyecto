@@ -6,8 +6,15 @@ const cartCollection = 'carts';
 const cartSchema = mongoose.Schema({
     items: [
         {
-            item: {type: mongoose.Schema.Types.ObjectId, ref: 'products'},
-            quant: { type: Number, require: true, default: 1 }
+            item: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'products'
+            },
+            quant: {
+                type: Number,
+                require: true,
+                default: 1
+            }
         }
     ],
 });

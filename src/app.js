@@ -1,29 +1,19 @@
 import express from 'express';
-import handlebars from 'express-handlebars';
-import mongoose from 'mongoose';
-import dotenv from 'dotenv';
-import path from 'path';
+import handlebars from 'express-handlebars';import path from 'path';
 import __dirName from './utils.js';
 import viewsRouter from './routes/views.router.js'
+import { initMongoDb } from './db/db.config.js';
 
-// environment variables config
-dotenv.config();
-const URLConnection = process.env.URLMongoDb;
-
-// conexión a la base de datos
-mongoose.connect(URLConnection);
-
-// server init
-const port = 8080
 const app = express();
-const httpServer = app.listen(port, () => {
-    console.log('Server on port', port);
-});
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
 app.use(express.static(__dirName + '/public'));
+
+// conexión a Mongo
+initMongoDb()
+  .then(() => console.log('Base de datos conectada'))
+  .catch((error) => console.log(error));
 
 // path routers config
 app.use('/', viewsRouter);
@@ -35,5 +25,12 @@ app.engine('handlebars', handlebars.engine({
     allowProtoMethodsByDefault: true
   }
 }));
+
 app.set('views', path.join(__dirName + '/views'));
 app.set('view engine', 'handlebars');
+
+// server init
+const port = 8080
+const httpServer = app.listen(port, () => {
+    console.log('Servidor en el puerto', port);
+});

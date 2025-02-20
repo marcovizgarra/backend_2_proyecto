@@ -4,9 +4,9 @@ import cartModel from "../models/cart.model.js";
 
 const productsRouter = Router();
 
-productsRouter.get('/', async (request, response) => {
-    let page = parseInt(request.query.page);
-    let row = parseInt(request.query.row);
+productsRouter.get('/', async (req, res) => {
+    let page = parseInt(req.query.page);
+    let row = parseInt(req.query.row);
 
     if (!row || row < 1) {
     row = 4
@@ -16,7 +16,7 @@ productsRouter.get('/', async (request, response) => {
     query.prevLink = query.hasPrevPage ? `http://localhost:8080/products?row=${row}&page=${query.prevPage}` : '';
     query.nextLink = query.hasNextPage ? `http://localhost:8080/products?row=${row}&page=${query.nextPage}` : '';
 
-    response.render('products', query)
+    res.render('products', query)
 });
 
 productsRouter.post('/add', async (req, res) => {
