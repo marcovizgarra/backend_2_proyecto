@@ -13,7 +13,7 @@ app.use(express.static(__dirName + '/public'));
 
 const sessionConfig = {
   secret: process.env.SECRET_KEY,// string para firmar cookies
-  cookie: {maxAge: 60000}, // cookie con su tiempo de expiración
+  cookie: {maxAge: 300000}, // cookie con su tiempo de expiración
   saveUninitialized: true, // crea la sesión vacía
   resave: false // fuerza a guardar la sesión aunque aún no se haya utilizado
 }

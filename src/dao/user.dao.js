@@ -15,7 +15,7 @@ class UserDao {
 
     async login(email, password){
         try {
-            return await this.model.findOne({ email, password })
+            return await this.model.findOne({ email, password });
         } catch (error) {
             throw new Error(error)
         }
