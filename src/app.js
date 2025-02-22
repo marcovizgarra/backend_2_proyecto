@@ -1,4 +1,5 @@
 import express from 'express';
+import session from 'express-session';
 import handlebars from 'express-handlebars';import path from 'path';
 import __dirName from './utils.js';
 import viewsRouter from './routes/views.router.js'
@@ -9,6 +10,20 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirName + '/public'));
+
+const sessionConfig = {
+  secret: process.env.SECRET_KEY,// string para firmar cookies
+  cookie: {maxAge: 60000}, // cookie con su tiempo de expiración
+  saveUninitialized: true, // crea la sesión vacía
+  resave: false // fuerza a guardar la sesión aunque aún no se haya utilizado
+}
+
+app.use(session(sessionConfig));
+
+app.post('login', (req, res) => {
+  const { username, password } = req.body;
+  const index = users.findIndex
+})
 
 // conexión a Mongo
 initMongoDb()

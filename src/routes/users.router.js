@@ -34,7 +34,7 @@ usersRouter.post('/login', async (req, res) => {
             res.redirect('/errorLogin');
         }
     } catch (error) {
-        
+        res.send(error.message)
     }
 })
 
