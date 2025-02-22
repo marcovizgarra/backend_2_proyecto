@@ -1,14 +1,13 @@
 import { userDao } from "../dao/user.dao.js";
+import * as services from '../services/user.services.js'
 
 export const register = async (req, res) => {
     try {
-        const user = await userDao.register({
-            ...req.body
-        });
-        if (!user) return res.redirect('/errorRegistro');
+        const user = await services.register(req.body)
+
         return res.redirect('/user/login')
     } catch (error) {
-        res.send({ error: error.message })
+        res.status(404).json({ message: error.message });
     }
 };
 

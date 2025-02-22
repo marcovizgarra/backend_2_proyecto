@@ -3,7 +3,7 @@ import usersModel from '../models/user.model.js'
 class UserDao {
     constructor(model){
         this.model = model
-    }
+    };
     
     async register(user){
         try {
@@ -11,13 +11,21 @@ class UserDao {
         } catch (error) {
             throw new Error(error);
         }
-    }
+    };
 
     async login(email, password){
         try {
             return await this.model.findOne({ email, password });
         } catch (error) {
             throw new Error(error)
+        }
+    };
+
+    async getByEmail(email){
+        try {
+            return await this.model.findOne({ email });
+        } catch (error) {
+            throw new Error(error);
         }
     }
 };
