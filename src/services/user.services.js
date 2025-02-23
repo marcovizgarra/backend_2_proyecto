@@ -6,7 +6,7 @@ export const register = async (user) => {
         const { email, password } = user;       
         const existsUser = await userDao.getByEmail(email);
 
-        if (existsUser) throw new Error('El usuario ya existe');
+        if (existsUser && existsUser.email == user.email) throw new Error('El usuario ya existe');
         if (!existsUser) {
             return await userDao.register({
                 ...user,
@@ -23,10 +23,16 @@ export const register = async (user) => {
     }
 };
 
-export const login = async() => {
+export const login = async (email, password) => {
     try {
+        const existsUser = await userDao.getByEmail(email)
+        if (!existsUser) throw new Error('Usuario no encontrado');
         
+        const validPassword = isValidPassword(password, existsUser);
+        if(!validPassword) throw new Error('Usuario y/o contraseña incorrectos')
+        
+        return existsUser
     } catch (error) {
-        
+        throw (error)
     }
 };

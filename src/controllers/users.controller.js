@@ -1,9 +1,8 @@
-import { userDao } from "../dao/user.dao.js";
 import * as services from '../services/user.services.js'
 
 export const register = async (req, res) => {
     try {
-        const user = await services.register(req.body)
+        await services.register(req.body)
 
         return res.redirect('/user/login')
     } catch (error) {
@@ -14,17 +13,9 @@ export const register = async (req, res) => {
 export const login = async (req, res) => {
     try {
         const { email, password } = req.body;
-        const user = await userDao.login(email, password);
-        if(user){
-            req.session.email = email;
-            req.session.info = {
-                loggedIn: true,
-                admin: user.role,
-            }
-            res.render('profile', user)
-        } else {
-            res.redirect('/errorLogin');
-        }
+        const user = await services.login(email, password);
+        
+        res.render('profile', user)
     } catch (error) {
         res.send(error.message)
     }
