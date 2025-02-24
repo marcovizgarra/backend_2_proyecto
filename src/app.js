@@ -3,6 +3,8 @@ import session from 'express-session';
 import handlebars from 'express-handlebars';import path from 'path';
 import __dirName from './utils.js';
 import viewsRouter from './routes/views.router.js'
+import passport from 'passport';
+import './passport/local.strategy.js'
 import { initMongoDb } from './db/db.config.js';
 
 const app = express();
@@ -29,6 +31,10 @@ app.post('login', (req, res) => {
 initMongoDb()
   .then(() => console.log('Base de datos conectada'))
   .catch((error) => console.log(error));
+
+// passport configurado a nivel de aplicación, va SIEMPRE antes de las rutas, porque de lo contrario no va a inicializar passport
+app.use(passport.initialize());
+app.use(passport.session())
 
 // path routers config
 app.use('/', viewsRouter);

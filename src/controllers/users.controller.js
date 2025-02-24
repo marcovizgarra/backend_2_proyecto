@@ -2,7 +2,11 @@ import * as services from '../services/user.services.js'
 
 export const register = async (req, res) => {
     try {
-        await services.register(req.body)
+        // res.json({
+        //     msg: 'Register ok !',
+        //     session: req.session
+        // });
+        // await services.register(req.body)
 
         return res.redirect('/user/login')
     } catch (error) {
@@ -12,9 +16,10 @@ export const register = async (req, res) => {
 
 export const login = async (req, res) => {
     try {
-        const { email, password } = req.body;
-        const user = await services.login(email, password);
-        
+        // const { email, password } = req.body;
+        // const user = await services.login(email, password);
+        const id = req.session.passport.user;
+        const user = await services.getById(id);
         res.render('profile', user)
     } catch (error) {
         res.send(error.message)
