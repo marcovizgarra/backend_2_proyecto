@@ -26,13 +26,50 @@
     margin: 10px;
 }
 
-.products form button {
+.products nav {
+    width: 100vw;
+    justify-content: flex-end;
+    padding-right: 50px;
+    display: flex;  
+    margin: 0;
+}
+
+.products nav ul {
+    display: flex;  
+    align-items: center;
+    flex-direction: row;
+    margin: 0;
+}
+
+.products nav ul li {
+    margin-inline: 5px;
+}
+
+.products nav ul li form button {
+    color: white;
+    font-weight: bold;
+}
+
+.products nav ul li form button:hover {
+    color: red;
+    font-weight: bold;
+}
+
+.products nav form button {
     background-color: #ffffff00;
     border: 0;
 }
 
+.products nav ul {
+    list-style: none;
+}
+
 .products form button .cartIcon {
-    width: 50px;
+    width: 32px;
+}
+
+.products form button .cartIcon:hover {
+    filter: drop-shadow(0 0 1rem crimson);
 }
 
 .products .cardsContainer {

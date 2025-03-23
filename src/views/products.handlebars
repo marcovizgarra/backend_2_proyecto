@@ -1,12 +1,30 @@
 <section class="products">
     <h1>Bienvenido a GAME STORE</h1>
 
-    <form action="/cart" method="GET">
-        <button type="submit">
-        <img src="/img/cart-shopping-solid.svg" alt="cartIcon" class="cartIcon m-3">
-    </button>
+    <nav>
+        <form action="/cart" method="GET">
+            <button type="submit">
+                <img src="/img/cart-shopping-solid.svg" alt="cartIcon" class="cartIcon m-3">
+            </button>
+        </form>
 
-    </form>
+        <ul>
+            <li>
+                <form action="/user/login" method="GET">
+                    <button type="submit">
+                        Login
+                    </button>
+                </form>
+            </li>
+            <li>
+                <form action="/user/register" method="GET">
+                    <button type="submit">
+                        Registrarse
+                    </button>
+                </form>
+            </li>
+        </ul>
+    </nav>
     
     <div class="cardsContainer">
         {{#each docs}}

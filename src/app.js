@@ -4,8 +4,8 @@ import handlebars from 'express-handlebars';import path from 'path';
 import __dirName from './utils.js';
 import viewsRouter from './routes/views.router.js'
 import passport from 'passport';
-import './passport/local.strategy.js'
 import { initMongoDb } from './db/db.config.js';
+import './passport/local.strategy.js' 
 
 const app = express();
 
