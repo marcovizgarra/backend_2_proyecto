@@ -1,17 +1,23 @@
-<h1>Login</h1>
-<p>
-    <strong>{{this.message}}</strong>
-</p>
-<form action="/user/login" method="post">
-    <label for="email">Email:</label>
-    <input type="email" name="email" id="email">
+<section class="login">
+    <h1>Login</h1>
+    <p>
+        <strong>{{this.message}}</strong>
+    </p>
+    <form action="/user/login" method="post">
+        <label for="email">Email:</label> 
+        <br>
+        <input type="email" name="email" id="email">
+        <br><br>
+
+        <label for="password">Password:</label>
+        <br>
+        <input type="password" name="password" id="password">
+
+        <br><br>
+        <input type="submit" value="Ingresar">
+    </form>
+
     <br><br>
-    <label for="password">Password:</label>
-    <input type="password" name="password" id="password">
-
-    <input type="submit" value="ingresar">
-</form>
-
-<br><br>
-<h2>¿Aún no tienes usuario?</h2>
-<button onclick="location.href='/user/register'">Registrarse</button>
+    <h2>¿Aún no tienes usuario?</h2>
+    <button onclick="location.href='/user/register'">Registrarse</button>
+</section>

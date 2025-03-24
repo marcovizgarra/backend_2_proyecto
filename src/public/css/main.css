@@ -136,6 +136,36 @@
     width: 70px;
 }
 
+/* 'login' view */
+.login {
+    display: flex;
+     align-items: center;
+     flex-direction: column;
+     align-content: center;
+    background-color: #2e2b2b;
+    color: white;
+    height: 100vh;
+}
+
+.login form input {
+    width: 100%;
+}
+
+/* 'register' view */
+.register {
+    display: flex;
+     align-items: center;
+     flex-direction: column;
+     align-content: center;
+    background-color: #2e2b2b;
+    color: white;
+    height: 100vh;
+}
+
+.register form input {
+    width: 100%;
+}
+
 /* 'cart' view */
 #cartContainer .cartItem .row {
     height: 10rem;
