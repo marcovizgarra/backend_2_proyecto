@@ -25,7 +25,7 @@ export const login = async (email, password) => {
         
         const validPassword = isValidPassword(password, existsUser);
         if(!validPassword) throw new Error('Usuario y/o contraseña incorrectos')
-        
+                
         return existsUser
     } catch (error) {
         throw (error)

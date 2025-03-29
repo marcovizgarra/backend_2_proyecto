@@ -4,11 +4,14 @@ import handlebars from 'express-handlebars';import path from 'path';
 import __dirName from './utils.js';
 import viewsRouter from './routes/views.router.js'
 import passport from 'passport';
+import cookieParser from 'cookie-parser';
 import { initMongoDb } from './db/db.config.js';
-import './passport/local.strategy.js' 
+import './passport/local.strategy.js';
+import './passport/jwt.strategy.js';
 
 const app = express();
 
+app.use(cookieParser()); // 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirName + '/public'));
@@ -22,10 +25,10 @@ const sessionConfig = {
 
 app.use(session(sessionConfig));
 
-app.post('login', (req, res) => {
-  const { username, password } = req.body;
-  const index = users.findIndex
-})
+// app.post('login', (req, res) => {
+//   const { username, password } = req.body;
+//   const index = users.findIndex
+// })
 
 // conexión a Mongo
 initMongoDb()
