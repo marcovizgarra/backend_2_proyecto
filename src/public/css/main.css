@@ -176,3 +176,11 @@
     height: 10rem;
     width: 7rem;
 }
+
+/* 'profile' view */
+.profileContainer {
+    background-color: #2e2b2b;
+    width: 100vw;
+    height: 100vh;
+    color: white;
+}

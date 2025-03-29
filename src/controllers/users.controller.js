@@ -23,7 +23,7 @@ export const login = async (req, res) => {
         // generación del token
         const payload = {
             id: user._id,
-            user: user.email,
+            email: user.email,
             frist_name: user.f_name,
             last_name: user.l_name,
             role: user.role
