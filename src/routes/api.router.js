@@ -1,10 +1,9 @@
 import { Router } from "express";
-import { passportCall } from '../passport/passportCall.js'
 import * as apiController from '../controllers/api.controller.js';
-import passport from "passport";
+import jwtAuth from "../middlewares/jwt/jwtAuth.js";
 
 const apiRouter = Router();
 
-apiRouter.get('/session/current', passportCall('jwt'), apiController.profile);
+apiRouter.get('/session/current', jwtAuth, apiController.profile);
 
 export default apiRouter

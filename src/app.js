@@ -1,10 +1,10 @@
 import express from 'express';
 import session from 'express-session';
 import handlebars from 'express-handlebars';import path from 'path';
-import __dirName from './utils.js';
 import viewsRouter from './routes/views.router.js'
 import passport from 'passport';
 import cookieParser from 'cookie-parser';
+import __dirName from './utils.js';
 import { initMongoDb } from './db/db.config.js';
 import './passport/local.strategy.js';
 import './passport/jwt.strategy.js';

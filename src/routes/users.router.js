@@ -1,7 +1,7 @@
 import passport from 'passport';
+import jwtAuth from '../middlewares/jwt/jwtAuth.js';
 import { Router } from 'express';
 import * as controllers from '../controllers/users.controller.js'
-import jwtAuth from '../middlewares/jwt/jwt.js';
 
 const usersRouter = Router();
 

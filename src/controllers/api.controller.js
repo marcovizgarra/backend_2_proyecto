@@ -4,12 +4,12 @@ export const profile = async (req, res) => {
     try {
         const email = req.user?.email;
         if(!email) {
-            return res.status(400).json({ error: 'Usuario no encontrado en token' });
+            return res.render('unauthorized', { message: 'Usuario no encontrado con el email proporcionado' })
         }
 
         const user = await services.getByEmail(email);
         if(!user) {
-            return res.status(400).json({ error: 'Usuario no encontrado en base de datos' });
+            return res.render('unauthorized', { message: 'Usuario no encontrado en la base de datos' })
         }
 
         res.render('profile', user);
