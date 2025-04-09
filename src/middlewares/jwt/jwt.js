@@ -1,12 +1,24 @@
-import jwt from 'jsonwebtoken';
-import dotenv from 'dotenv/config'
-import passport from 'passport';
-import { Strategy as JWtStrategy } from 'passport-local';
+import cookieParser from 'cookie-parser';
+import jsonWebToken from 'jsonwebtoken';
+import 'dotenv/config'
 
 const SECRET_KEY = process.env.SECRET_KEY
 
-// passport.use(
-//     new JWtStrategy(
-//         { secretOrKey: SECRET_KEY, }
-//     )
-// )
+const jwtAuth = (req, res, next) => {
+    const token = req.cookies.token;
+
+    if(!token){
+        return res.render('unauthorized', { message: 'Token inválido' });
+    }
+
+    jsonWebToken.verify(token, SECRET_KEY,(error, decoded) => {
+        if(error) {
+            return res.redirect('unauthorized');
+        }
+
+        req.user = decoded;
+        next();
+    });
+}
+
+export default jwtAuth;

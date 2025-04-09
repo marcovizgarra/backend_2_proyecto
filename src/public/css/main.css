@@ -142,6 +142,7 @@
      align-items: center;
      flex-direction: column;
      align-content: center;
+    padding-top: 5rem;
     background-color: #2e2b2b;
     color: white;
     height: 100vh;
@@ -157,6 +158,7 @@
      align-items: center;
      flex-direction: column;
      align-content: center;
+    padding-top: 5rem;
     background-color: #2e2b2b;
     color: white;
     height: 100vh;
@@ -183,4 +185,46 @@
     width: 100vw;
     height: 100vh;
     color: white;
+}
+
+/* 'unauthorized' view */
+.unauthorized {
+    display: flex;
+     align-items: center;
+     flex-direction: column;
+     align-content: center;
+    padding-top: 5rem;
+    background-color: #2e2b2b;
+    color: white;
+    height: 100vh;
+}
+
+.unauthorized img {
+    width: 150px;
+}
+
+.unauthorized .login {
+    padding: .5rem;
+    width: 500px;
+    height: 100px;
+    background-color: grey;
+    border-radius: 1rem;
+}
+
+.unauthorized .register {
+    padding: .5rem;
+    width: 500px;
+    height: 100px;
+    background-color: grey;
+    border-radius: 1rem;
+}
+
+.unauthorized .login form button {
+    padding: .3rem;
+    border-radius: .3rem;
+}
+
+.unauthorized .register form button {
+    padding: .3rem;
+    border-radius: .3rem;
 }

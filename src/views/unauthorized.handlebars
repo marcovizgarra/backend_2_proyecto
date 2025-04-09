@@ -1,0 +1,21 @@
+<section class="unauthorized">
+    <h1>401</h1>
+    <h2>NO AUTORIZADO</h2>
+    <p>{{this.message}}</p>
+    <img class="unauthorized_icon" src="/img/unauthorized.png" alt="unauthorized">
+
+    <article class="login">
+        <h3>Si usted es usuario:</h3>
+        <form action="/user/login" method="get">
+            <button type="submit">INICIAR SESIÓN</button>
+        </form>
+    </article>
+
+    <br>
+    <article class="register">
+        <h3>Si aún no es usuario:</h3>
+        <form action="/user/register" method="get">
+            <button type="submit">REGISTRARSE</button>
+        </form>
+    </article>
+</section>
