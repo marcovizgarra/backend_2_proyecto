@@ -11,7 +11,9 @@ const strategyConfig = { // los campos de este objeto deben tener los mismos nom
 const register = async(req, email, password, done) => {
     try {
         const user = await services.getByEmail(email)
-        if (user) return done(null, false, { message: 'El usuario ya existe' }) 
+        if (user){
+            return done(null, false, { message: 'El usuario ya existe' })
+        }
             // La función done, es una callback para verificar el resultado del proceso de autenticación, y recibe:
             // 1 - Cómo primer parámetro un error, si lo hubiera, de lo contrario se pasa null
             // 2 - El segundo es el usuario, que en este caso es false
@@ -19,7 +21,7 @@ const register = async(req, email, password, done) => {
         const newUser = await services.register(req.body);
         return done (null, newUser)
     } catch (error) {
-        return done (error)
+        return res.json({ error: error })
     }
 };
 

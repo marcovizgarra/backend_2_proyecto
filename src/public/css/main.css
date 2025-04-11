@@ -168,6 +168,16 @@
     width: 100%;
 }
 
+.register form .admin_option {
+    display: flex;
+    justify-content: space-between
+}
+
+.register form .admin_option input {
+    width: auto;
+}
+
+
 /* 'cart' view */
 #cartContainer .cartItem .row {
     height: 10rem;

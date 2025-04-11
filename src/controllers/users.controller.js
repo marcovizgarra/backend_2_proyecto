@@ -1,17 +1,7 @@
 import * as services from '../services/user.services.js'
 import jwt from 'jsonwebtoken';
-import dotenv from 'dotenv/config'
-import cookieParser from 'cookie-parser';
 
 const SECRET_KEY = process.env.SECRET_KEY;
-
-export const register = async (req, res) => {
-    try {
-        return res.redirect('/user/login')
-    } catch (error) {
-        res.status(404).json({ message: error.message });
-    }
-};
 
 export const login = async (req, res) => {
     try {

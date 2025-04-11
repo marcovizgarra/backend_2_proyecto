@@ -25,11 +25,6 @@ const sessionConfig = {
 
 app.use(session(sessionConfig));
 
-// app.post('login', (req, res) => {
-//   const { username, password } = req.body;
-//   const index = users.findIndex
-// })
-
 // conexión a Mongo
 initMongoDb()
   .then(() => console.log('Base de datos conectada'))

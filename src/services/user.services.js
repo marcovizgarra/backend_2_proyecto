@@ -4,9 +4,12 @@ import { createHash, isValidPassword } from "../utils/bcrypt.js";
 export const register = async (user) => {
     try {
         const { email, password } = user;       
-        const existsUser = await userDao.getByEmail(email);
+        const existsUser = await userDao.getByEmail(email);      
 
-        if (existsUser && existsUser.email == user.email) throw new Error('El usuario ya existe');
+        if (existsUser && existsUser.email == user.email){
+            throw new Error('El usuario ya existe');
+        }
+
         if (!existsUser) {
             return await userDao.register({
                 ...user,
@@ -17,6 +20,7 @@ export const register = async (user) => {
         throw (error)
     }
 };
+
 
 export const login = async (email, password) => {
     try {
