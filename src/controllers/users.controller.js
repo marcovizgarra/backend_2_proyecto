@@ -5,30 +5,39 @@ const SECRET_KEY = process.env.SECRET_KEY;
 
 export const login = async (req, res) => {
     try {
-        // const { email, password } = req.body;
-        // const user = await services.login(email, password);
-        const id = req.session.passport.user;
-        const user = await services.getById(id);
-        
+        const id = req.session.passport.user; // passport autentica al usuario y almacena su ID en req.session.passport.user
+        const user = await services.getUser(req.body.email)
+
         // generación del token
         const payload = {
             id: user._id,
             email: user.email,
-            frist_name: user.f_name,
+            first_name: user.f_name,
             last_name: user.l_name,
             role: user.role
-        }
-        const options = { expiresIn: '1h' }
+        };
+        const options = { expiresIn: '1h' };
         const token = jwt.sign(payload, SECRET_KEY, options);
 
+        // configuración de la cookie que contiene el token
         res.cookie('token', token, {
-            httpOnly: true, // evita el acceso desde JS
+            httpOnly: true, // evita el acceso desde JS, limitando el acceso sólo mediante HTTP
             sameSite: 'Strict',
             maxAge: 3600000
-        })
-        
-        res.render('profile', user)
+        });
+
+        res.render('profile', user);
     } catch (error) {
-        res.send(error.message)
+        res.send(error.message);
     }
 };
+
+export const userProfile = async(email) => {
+    try {
+        const userProfile = await services.getUser(email);       
+
+        return userProfile;
+    } catch (error) {
+        throw new Error(error)
+    }
+}

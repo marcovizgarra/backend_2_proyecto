@@ -15,6 +15,8 @@ const jwtAuth = (req, res, next) => {
             return res.redirect('unauthorized');
         }
 
+        console.log(decoded.email);        
+
         req.user = decoded;
         next();
     });

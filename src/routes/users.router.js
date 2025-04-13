@@ -1,5 +1,7 @@
 import passport from 'passport';
 import jwtAuth from '../middlewares/jwt/jwtAuth.js';
+import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv/config';
 import { Router } from 'express';
 import * as controllers from '../controllers/users.controller.js'
 
@@ -13,8 +15,11 @@ usersRouter.get('/login', (req, res) => {
     res.render('login')
 });
 
-usersRouter.get('/profile', jwtAuth, (req, res) => {
-    res.render('profile')
+usersRouter.get('/profile', jwtAuth, async (req, res) => {
+    const email = req.user.email; // extrae el email de req.user.email, el correo se encuentra seteado allí porque el middleware jwtAuth realiza ese procedimiento antes de llegar a esta instancia 
+    const profile = await controllers.userProfile(email);
+    
+    res.render('profile', profile)
 });
 
 usersRouter.get('/unauthorized', (req, res) => {
@@ -27,10 +32,9 @@ usersRouter.post('/register', (req, res, next) => {
             return next(err);
         }
         if (!user) {
-            // Si no hay usuario, significa que hubo un error de autenticación
             return res.status(400).json({ message: info.message });
         }
-        req.logIn(user, (err) => {
+        req.logIn(user, (err) => { // 
             if (err) {
                 return next(err);
             }

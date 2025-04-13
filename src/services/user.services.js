@@ -1,3 +1,4 @@
+import ProfileDTO from "../dto/users/profile.res.dto.js";
 import { userDao } from "../dao/user.dao.js";
 import { createHash, isValidPassword } from "../utils/bcrypt.js";
 
@@ -47,6 +48,17 @@ export const getByEmail = async (email) => {
 export const getById = async (id) => {
     try {
         return await userDao.getById(id)
+    } catch (error) {
+        throw new Error (error)
+    }
+};
+
+export const getUser = async (email) => {
+    try {
+        const user = await getByEmail(email);
+        const userProfile = new ProfileDTO(user);
+
+        return userProfile;
     } catch (error) {
         throw new Error (error)
     }

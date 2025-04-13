@@ -1,7 +1,5 @@
 import passport from "passport";
 import { ExtractJwt, Strategy as JwtStrategy } from 'passport-jwt';
-import { userDao } from "../dao/user.dao.js";
-import dotenv from 'dotenv/config'
 
 const extractFromCookies = (req) => {
     let token = null;
