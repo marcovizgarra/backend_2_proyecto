@@ -7,7 +7,7 @@ export const profile = async (req, res) => {
             return res.render('unauthorized', { message: 'Usuario no encontrado con el email proporcionado' })
         }
 
-        const user = await services.getByEmail(email);
+        const user = await services.getUser(email);
         if(!user) {
             return res.render('unauthorized', { message: 'Usuario no encontrado en la base de datos' })
         }

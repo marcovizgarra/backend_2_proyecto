@@ -40,4 +40,4 @@ export const userProfile = async(email) => {
     } catch (error) {
         throw new Error(error)
     }
-}
+};

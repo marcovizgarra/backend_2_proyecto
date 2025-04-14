@@ -1,9 +1,9 @@
-import { userDao } from "../dao/user.dao.js";
+import { userRepository as UserRepository } from "../repository/user.repository.js";
 
-export const getByEmail = async (email) => {
+export const getUser = async (email) => {
     try {
-        return await userDao.getByEmail(email)
-    } catch (error) {
+        return await UserRepository.getByEmail(email);
+    } catch(error) {
         throw new Error (error)
     }
 };

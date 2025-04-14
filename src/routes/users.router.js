@@ -17,6 +17,8 @@ usersRouter.get('/login', (req, res) => {
 
 usersRouter.get('/profile', jwtAuth, async (req, res) => {
     const email = req.user.email; // extrae el email de req.user.email, el correo se encuentra seteado allí porque el middleware jwtAuth realiza ese procedimiento antes de llegar a esta instancia 
+    console.log({ uRouterEmail: email });
+    
     const profile = await controllers.userProfile(email);
     
     res.render('profile', profile)

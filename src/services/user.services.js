@@ -1,4 +1,4 @@
-import ProfileDTO from "../dto/users/profile.res.dto.js";
+import { userRepository as UserRepository } from "../repository/user.repository.js";
 import { userDao } from "../dao/user.dao.js";
 import { createHash, isValidPassword } from "../utils/bcrypt.js";
 
@@ -21,7 +21,6 @@ export const register = async (user) => {
         throw (error)
     }
 };
-
 
 export const login = async (email, password) => {
     try {
@@ -55,11 +54,8 @@ export const getById = async (id) => {
 
 export const getUser = async (email) => {
     try {
-        const user = await getByEmail(email);
-        const userProfile = new ProfileDTO(user);
-
-        return userProfile;
-    } catch (error) {
+        return await UserRepository.getByEmail(email);
+    } catch(error) {
         throw new Error (error)
     }
 };
