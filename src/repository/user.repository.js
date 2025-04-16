@@ -9,8 +9,6 @@ class UserRepository{
     getByEmail = async (email) => {
         try {
             const user = await this.dao.getByEmail(email);
-            console.log({email: email});
-            console.log({user: user});
             
             return new ProfileDTO(user)
         } catch(error) {

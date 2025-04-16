@@ -1,7 +1,5 @@
 import passport from 'passport';
 import jwtAuth from '../middlewares/jwt/jwtAuth.js';
-import jwt from 'jsonwebtoken';
-import dotenv from 'dotenv/config';
 import { Router } from 'express';
 import * as controllers from '../controllers/users.controller.js'
 
@@ -16,9 +14,7 @@ usersRouter.get('/login', (req, res) => {
 });
 
 usersRouter.get('/profile', jwtAuth, async (req, res) => {
-    const email = req.user.email; // extrae el email de req.user.email, el correo se encuentra seteado allí porque el middleware jwtAuth realiza ese procedimiento antes de llegar a esta instancia 
-    console.log({ uRouterEmail: email });
-    
+    const email = req.user.email; // extrae el email de req.user.email, el correo se encuentra seteado allí porque el middleware jwtAuth realiza ese procedimiento antes de llegar a esta instancia     
     const profile = await controllers.userProfile(email);
     
     res.render('profile', profile)

@@ -177,7 +177,6 @@
     width: auto;
 }
 
-
 /* 'cart' view */
 #cartContainer .cartItem .row {
     height: 10rem;
@@ -191,6 +190,11 @@
 
 /* 'profile' view */
 .profileContainer {
+    display: flex;
+     align-items: center;
+     flex-direction: column;
+     align-content: center;
+    padding-top: 5rem;
     background-color: #2e2b2b;
     width: 100vw;
     height: 100vh;
