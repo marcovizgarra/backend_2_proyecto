@@ -25,21 +25,9 @@ const register = async(req, email, password, done) => {
     }
 };
 
-const login = async (req, email, password, done) => {
-    try {
-        const userLogin = await services.login(email, password);
-        if (!userLogin) return done(null, false, { message: 'Error en autenticación' })
-        return done(null, userLogin);
-    } catch (error) {
-        return done(error)
-    }
-};
-
 const registerStrategy = new Strategy(strategyConfig, register);
-const loginStrategy = new Strategy(strategyConfig, login);
 
 passport.use('register', registerStrategy);
-passport.use('login', loginStrategy);
 
 passport.serializeUser((user, done) => {
     try {

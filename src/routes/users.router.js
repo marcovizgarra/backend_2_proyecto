@@ -5,6 +5,7 @@ import * as controllers from '../controllers/users.controller.js'
 
 const usersRouter = Router();
 
+//get
 usersRouter.get('/register', (req, res) => {
     res.render('register')
 });
@@ -24,23 +25,20 @@ usersRouter.get('/unauthorized', (req, res) => {
     res.render('unauthorized')
 });
 
+//post
 usersRouter.post('/register', (req, res, next) => {
-    passport.authenticate('register', (err, user, info) => {
-        if (err) {
-            return next(err);
+    passport.authenticate('register', (error, user, info) => {
+        if (error) {
+            return next(error);
         }
         if (!user) {
             return res.status(400).json({ message: info.message });
         }
-        req.logIn(user, (err) => { // 
-            if (err) {
-                return next(err);
-            }
-            return res.redirect('/user/login');
-        });
+        
+        return res.redirect('/user/login');
     })(req, res, next);
 });
 
-usersRouter.post('/login', passport.authenticate('login'), controllers.login);
+usersRouter.post('/login', controllers.login);
 
 export default usersRouter

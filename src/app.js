@@ -1,5 +1,4 @@
 import express from 'express';
-import session from 'express-session';
 import handlebars from 'express-handlebars';import path from 'path';
 import viewsRouter from './routes/views.router.js'
 import passport from 'passport';
@@ -11,19 +10,10 @@ import './passport/jwt.strategy.js';
 
 const app = express();
 
-app.use(cookieParser()); // 
+app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirName + '/public'));
-
-const sessionConfig = {
-  secret: process.env.SECRET_KEY,// string para firmar cookies
-  cookie: {maxAge: 300000}, // cookie con su tiempo de expiración
-  saveUninitialized: true, // crea la sesión vacía
-  resave: false // fuerza a guardar la sesión aunque aún no se haya utilizado
-}
-
-app.use(session(sessionConfig));
 
 // conexión a Mongo
 initMongoDb()
@@ -32,18 +22,18 @@ initMongoDb()
 
 // passport configurado a nivel de aplicación, va SIEMPRE antes de las rutas, porque de lo contrario no va a inicializar passport
 app.use(passport.initialize());
-app.use(passport.session())
 
 // path routers config
 app.use('/', viewsRouter);
 
 // handlebars engine config
 app.engine('handlebars', handlebars.engine({
-  runtimeOptions: {
-    allowProtoPropertiesByDefault: true,
-    allowProtoMethodsByDefault: true
-  }
-}));
+    runtimeOptions: {
+      allowProtoPropertiesByDefault: true,
+      allowProtoMethodsByDefault: true
+    }
+  })
+);
 
 app.set('views', path.join(__dirName + '/views'));
 app.set('view engine', 'handlebars');

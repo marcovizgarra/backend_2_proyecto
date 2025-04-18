@@ -9,7 +9,9 @@ export const getAllProducts = async (req, res) => {
         row = 4
     };
 
-    let query = await productModel.paginate({}, { page, limit: row, lean: true });
+    let query = await productModel.paginate({}, { page, limit: row, lean: true }); 
+        // lean:true se usa para que Mongoose devuelva los documentos como objetos de JavaScript simples, en lugar de instancias completas de Mongoose.
+        // Significa que los documentos no tendrán métodos de instancia de Mongoose, pero la consulta será más rápida y consumirá menos memoria.
     query.prevLink = query.hasPrevPage ? `http://localhost:8080/products?row=${row}&page=${query.prevPage}` : '';
     query.nextLink = query.hasNextPage ? `http://localhost:8080/products?row=${row}&page=${query.nextPage}` : '';
 
